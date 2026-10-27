@@ -34,31 +34,31 @@ class AssetPreloader {
         this.rambAudioReady = false;
 
         this.soundFiles = {
-            susie: '/txsus.wav',
-            alphys: '/txalp.wav',
-            toriel: '/txral.wav',
-            lancer: '/txlancer.wav',
-            rouxls: '/txkri.wav',
-            noelle: '/txnoelle.wav',
-            berdly: '/txberdly.wav',
-            toby: '/txkri.wav',
-            spamton: '/txspam.wav',
-            queen: '/txqueen.wav',
-            nubert: '/txkri.wav',
-            ramb: '/txkri.wav',
-            pink: '/txkri.wav',
-            pluey: '/txkri.wav',
-            dynamic: '/txkri.wav'
+            susie: '/assets/audio/voice/txsus.wav',
+            alphys: '/assets/audio/voice/txalp.wav',
+            toriel: '/assets/audio/voice/txral.wav',
+            lancer: '/assets/audio/voice/txlancer.wav',
+            rouxls: '/assets/audio/voice/txkri.wav',
+            noelle: '/assets/audio/voice/txnoelle.wav',
+            berdly: '/assets/audio/voice/txberdly.wav',
+            toby: '/assets/audio/voice/txkri.wav',
+            spamton: '/assets/audio/voice/txspam.wav',
+            queen: '/assets/audio/voice/txqueen.wav',
+            nubert: '/assets/audio/voice/txkri.wav',
+            ramb: '/assets/audio/voice/txkri.wav',
+            pink: '/assets/audio/voice/txkri.wav',
+            pluey: '/assets/audio/voice/txkri.wav',
+            dynamic: '/assets/audio/voice/txkri.wav'
         };
         this.tennaFiles = [];
-        for (let i = 1; i <= 10; i++) this.tennaFiles.push(`/txtenna${i}.wav`);
+        for (let i = 1; i <= 10; i++) this.tennaFiles.push(`/assets/audio/voice/txtenna${i}.wav`);
 
         // Flowery's per-letter "voicenoise" blips (cycled while he talks) and
         // his one-shot voice clips, decoded on demand by name.
         this.floweryNoiseFiles = [
-            '/snd_flowery_voicenoise_1.wav',
-            '/snd_flowery_voicenoise_2.wav',
-            '/snd_flowery_voicenoise_3.wav'
+            '/assets/audio/voice/snd_flowery_voicenoise_1.wav',
+            '/assets/audio/voice/snd_flowery_voicenoise_2.wav',
+            '/assets/audio/voice/snd_flowery_voicenoise_3.wav'
         ];
 
         this.queenPitches = [0.97, 1.0, 1.03];
@@ -224,7 +224,7 @@ class AssetPreloader {
         const safe = String(name).toLowerCase().replace(/[^a-z0-9_]/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '');
         if (!safe) return;
         const key = 'floweryclip_' + safe;
-        const url = '/snd_flowery_voiceclip_' + safe + '.wav';
+        const url = '/assets/audio/voice/snd_flowery_voiceclip_' + safe + '.wav';
         if (this.soundBuffers.has(key)) {
             this.playSound(key, { gain: 0.7 });
             return;

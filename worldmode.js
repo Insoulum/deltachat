@@ -28,19 +28,19 @@ class OverworldGame {
         
         // Player sprites
         this.playerSprites = {
-            down: ['/kd1d.png', '/kd2d.png', '/kd3d.png', '/kd4d.png'],
-            up: ['/ku1d.png', '/ku2d.png', '/ku3d.png', '/ku4d.png'],
-            left: ['/kl1d.png', '/kl2d.png', '/kl3d.png', '/kl4d.png'],
-            right: ['/kr1d.png', '/kr2d.png', '/kr3d.png', '/kr4d.png']
+            down: ['/assets/sprites/kris/kris_dark_walk_down_1.png', '/assets/sprites/kris/kris_dark_walk_down_2.png', '/assets/sprites/kris/kris_dark_walk_down_3.png', '/assets/sprites/kris/kris_dark_walk_down_4.png'],
+            up: ['/assets/sprites/kris/kris_dark_walk_up_1.png', '/assets/sprites/kris/kris_dark_walk_up_2.png', '/assets/sprites/kris/kris_dark_walk_up_3.png', '/assets/sprites/kris/kris_dark_walk_up_4.png'],
+            left: ['/assets/sprites/kris/kris_dark_walk_left_1.png', '/assets/sprites/kris/kris_dark_walk_left_2.png', '/assets/sprites/kris/kris_dark_walk_left_3.png', '/assets/sprites/kris/kris_dark_walk_left_4.png'],
+            right: ['/assets/sprites/kris/kris_dark_walk_right_1.png', '/assets/sprites/kris/kris_dark_walk_right_2.png', '/assets/sprites/kris/kris_dark_walk_right_3.png', '/assets/sprites/kris/kris_dark_walk_right_4.png']
         };
         this.loadedSprites = {};
         
         // Susie sprites
         this.susieSprites = {
-            down: ['/sd1d.png', '/sd2d.png', '/sd3d.png', '/sd4d.png'],
-            up: ['/su1d.png', '/su2d.png', '/su3d.png', '/su4d.png'],
-            left: ['/sl1d.png', '/sl2d.png', '/sl3d.png', '/sl4d.png'],
-            right: ['/sr1d.png', '/sr2d.png', '/sr3d.png', '/sr4d.png']
+            down: ['/assets/sprites/susie/susie_dark_walk_down_1.png', '/assets/sprites/susie/susie_dark_walk_down_2.png', '/assets/sprites/susie/susie_dark_walk_down_3.png', '/assets/sprites/susie/susie_dark_walk_down_4.png'],
+            up: ['/assets/sprites/susie/susie_dark_walk_up_1.png', '/assets/sprites/susie/susie_dark_walk_up_2.png', '/assets/sprites/susie/susie_dark_walk_up_3.png', '/assets/sprites/susie/susie_dark_walk_up_4.png'],
+            left: ['/assets/sprites/susie/susie_dark_walk_left_1.png', '/assets/sprites/susie/susie_dark_walk_left_2.png', '/assets/sprites/susie/susie_dark_walk_left_3.png', '/assets/sprites/susie/susie_dark_walk_left_4.png'],
+            right: ['/assets/sprites/susie/susie_dark_walk_right_1.png', '/assets/sprites/susie/susie_dark_walk_right_2.png', '/assets/sprites/susie/susie_dark_walk_right_3.png', '/assets/sprites/susie/susie_dark_walk_right_4.png']
         };
         this.loadedSusieSprites = {};
         
@@ -108,7 +108,7 @@ class OverworldGame {
         this.backgroundImage.onload = () => {
             console.log('Background loaded');
         };
-        this.backgroundImage.src = '/school.png';
+        this.backgroundImage.src = '/assets/sprites/world/school.png';
         
         // Load collision map
         this.collisionImage = new Image();
@@ -118,7 +118,7 @@ class OverworldGame {
             this.collisionCtx.drawImage(this.collisionImage, 0, 0);
             console.log('Collision map loaded');
         };
-        this.collisionImage.src = '/school-hitbox.png';
+        this.collisionImage.src = '/assets/sprites/world/school_hitbox.png';
         
         // Load player sprites
         Object.keys(this.playerSprites).forEach(direction => {
@@ -436,7 +436,7 @@ class OverworldGame {
     
     async generateSusieAIDialogue() {
         try {
-            const completion = await websim.chat.completions.create({
+            const completion = await deltachat.chat.completions.create({
                 messages: [
                     {
                         role: "system",
@@ -878,7 +878,7 @@ Respond with JSON containing a sequence array:
         
         try {
             // Generate AI response
-            const completion = await websim.chat.completions.create({
+            const completion = await deltachat.chat.completions.create({
                 messages: [
                     {
                         role: "system",

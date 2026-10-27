@@ -10,10 +10,10 @@
         return data;
     }
 
-    // Drop-in replacement for the Websim platform SDK globals. The Python
-    // backend (server.py) powers the chat completions, image generation and
-    // identity, and the localdata folder backs all the saving.
-    window.websim = {
+    // Client-side API shim. The Python backend (server.py) powers the chat
+    // completions, image generation and identity, and the localdata folder
+    // backs all the saving.
+    window.deltachat = {
         async getCurrentUser() {
             const res = await fetch('/api/me');
             if (!res.ok) throw new Error('Failed to load current user');
@@ -22,7 +22,6 @@
         async getUser() {
             return this.getCurrentUser();
         },
-        getCurrentProject: async () => ({ id: 'deltachat', title: 'DELTACHAT', description: 'chat with deltarune characters' }),
         chat: {
             completions: {
                 async create({ messages, model, json }) {

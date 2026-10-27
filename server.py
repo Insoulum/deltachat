@@ -25,7 +25,7 @@ _groq_model = GROQ_MODEL
 _groq_failures = 0
 _groq_lock = threading.Lock()
 LOCAL_USER = {"id": "ketchupdev-local", "username": "ketchupdev", "avatar_url": ""}
-PLACEHOLDER_IMAGE = "/susnormal.png"
+PLACEHOLDER_IMAGE = "/assets/sprites/susie/susie_normal.png"
 
 CONTENT_TYPES = {
     ".html": "text/html; charset=utf-8",
@@ -419,19 +419,6 @@ def app(environ, start_response):
     try:
         if path == "/api/me" and method == "GET":
             return _wsgi_json(start_response, LOCAL_USER)
-        if path == "/api/diag":
-            diag_path = os.path.join(DATA_DIR, "diag.json")
-            if method == "POST":
-                payload = _read_wsgi_json(environ)
-                os.makedirs(DATA_DIR, exist_ok=True)
-                with open(diag_path, "w") as fh:
-                    json.dump(payload, fh)
-                return _wsgi_json(start_response, {"ok": True})
-            try:
-                with open(diag_path) as fh:
-                    return _wsgi_json(start_response, json.load(fh))
-            except (OSError, ValueError):
-                return _wsgi_json(start_response, {})
         if path == "/api/chats":
             if method == "GET":
                 return _wsgi_json(start_response, list_chats())

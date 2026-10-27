@@ -1,4 +1,5 @@
 __pycache__/
 *.pyc
 localdata/
-.deltachat-server.log
+*.log
+.DS_Store

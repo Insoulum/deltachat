@@ -215,47 +215,45 @@ class SusieDialogue {
         
         // Background music system
         this.availableSongs = {
-            'rouxls_battle': '/rouxls_battle.ogg',
-            'spamton_meeting': '/spamton_meeting.ogg',
-            'anotherhim': '/AUDIO_ANOTHERHIM.ogg',
-            'berdly_theme': '/berdly_theme.ogg',
-            'giant_queen_appears': '/giant_queen_appears.ogg',
-            'raining': '/raining.ogg',
-            'findher': '/findher.ogg',
-            'school': '/mus_school.ogg',
-            'oldman_helps_out': '/oldman_helps_out.ogg',
-            'noelle_house_wip': '/noelle_house_wip.ogg',
-            'pumpkin_boss': '/pumpkin_boss.ogg',
-            'dogcheck': '/dogcheck.ogg',
-            'noelle_school': '/noelle_school.ogg',
-            'church_hymn': '/church_hymn.ogg',
-            'noelle_normal': '/noelle_normal.ogg',
-            'mike': '/mike.ogg',
-            'card_castle': '/card_castle.ogg',
-            'gerson_theme_nointro': '/gerson_theme_nointro.ogg',
-            'shop1': '/shop1.ogg',
-            'wind': '/wind.ogg',
-            'checkers': '/checkers.ogg',
-            'forest': '/forest.ogg',
-            'acid_tunnel': '/acid_tunnel.ogg',
-            'knight': '/knight.ogg',
-            'battle': '/battle.ogg',
-            'jitterbug': '/jitterbug.ogg',
-            'april_2012': '/april_2012.ogg',
-            'lancer': '/lancer.ogg',
-            'introcar': '/mus_introcar.ogg',
-            'tense': '/tense.ogg',
-            'cyber': '/cyber.ogg',
-            'cyber_battle': '/cyber_battle.ogg',
-            'cybercity': '/cybercity.ogg',
-            'field_of_hopes': '/field_of_hopes.ogg',
-            'susie_diner': '/susie_diner.ogg',
-            'confession': '/mus_confession.ogg',
-            'race': '/mus_race.ogg',
-            'napsta_alarm': '/napsta_alarm.ogg',
-            'thrashmachine': '/thrashmachine.ogg',
-            'tv_changingroom': '/tv_changingroom.ogg',
-            'ch3_tvtime': '/ch3_tvtime.ogg'
+            'rouxls_battle': '/assets/audio/music/rouxls_battle.ogg',
+            'anotherhim': '/assets/audio/music/AUDIO_ANOTHERHIM.ogg',
+            'berdly_theme': '/assets/audio/music/berdly_theme.ogg',
+            'giant_queen_appears': '/assets/audio/music/giant_queen_appears.ogg',
+            'raining': '/assets/audio/music/raining.ogg',
+            'findher': '/assets/audio/music/findher.ogg',
+            'school': '/assets/audio/music/mus_school.ogg',
+            'oldman_helps_out': '/assets/audio/music/oldman_helps_out.ogg',
+            'noelle_house_wip': '/assets/audio/music/noelle_house_wip.ogg',
+            'pumpkin_boss': '/assets/audio/music/pumpkin_boss.ogg',
+            'dogcheck': '/assets/audio/music/dogcheck.ogg',
+            'noelle_school': '/assets/audio/music/noelle_school.ogg',
+            'church_hymn': '/assets/audio/music/church_hymn.ogg',
+            'noelle_normal': '/assets/audio/music/noelle_normal.ogg',
+            'mike': '/assets/audio/music/mike.ogg',
+            'card_castle': '/assets/audio/music/card_castle.ogg',
+            'gerson_theme_nointro': '/assets/audio/music/gerson_theme_nointro.ogg',
+            'shop1': '/assets/audio/music/shop1.ogg',
+            'wind': '/assets/audio/music/wind.ogg',
+            'checkers': '/assets/audio/music/checkers.ogg',
+            'forest': '/assets/audio/music/forest.ogg',
+            'acid_tunnel': '/assets/audio/music/acid_tunnel.ogg',
+            'knight': '/assets/audio/music/knight.ogg',
+            'battle': '/assets/audio/music/battle.ogg',
+            'jitterbug': '/assets/audio/music/jitterbug.ogg',
+            'april_2012': '/assets/audio/music/april_2012.ogg',
+            'lancer': '/assets/audio/music/lancer.ogg',
+            'tense': '/assets/audio/music/tense.ogg',
+            'cyber': '/assets/audio/music/cyber.ogg',
+            'cyber_battle': '/assets/audio/music/cyber_battle.ogg',
+            'cybercity': '/assets/audio/music/cybercity.ogg',
+            'field_of_hopes': '/assets/audio/music/field_of_hopes.ogg',
+            'susie_diner': '/assets/audio/music/susie_diner.ogg',
+            'confession': '/assets/audio/music/mus_confession.ogg',
+            'race': '/assets/audio/music/mus_race.ogg',
+            'napsta_alarm': '/assets/audio/music/napsta_alarm.ogg',
+            'thrashmachine': '/assets/audio/music/thrashmachine.ogg',
+            'tv_changingroom': '/assets/audio/music/tv_changingroom.ogg',
+            'ch3_tvtime': '/assets/audio/music/ch3_tvtime.ogg'
         };
         
         this.conversationHistory = [];
@@ -560,87 +558,6 @@ Keep him in character always: blindingly charming with a razor underneath — su
         const h = window.innerHeight;
         const scale = Math.min(1, (w - 24) / BW, (h - 24) / BH);
         this.textbox.style.transform = scale < 1 ? `scale(${scale})` : '';
-        if (location.search.indexOf('diag') !== -1) this._diagReport(scale, BW, BH);
-    }
-
-    _diagReport(scale, BW, BH) {
-        const rect = (el) => {
-            if (!el) return null;
-            const r = el.getBoundingClientRect();
-            return [r.x, r.y, r.width, r.height].map((n) => Math.round(n));
-        };
-        const cont = this.textbox.parentElement;
-        const cs = getComputedStyle(this.textbox);
-        const pick = (el) => {
-            if (!el) return null;
-            const s = getComputedStyle(el);
-            return {
-                cls: el.className && el.className.toString ? el.className.toString().slice(0, 60) : '',
-                disp: s.display, w: s.width, h: s.height,
-                flexDir: s.flexDirection, align: s.alignItems, justify: s.justifyContent,
-                flex: s.flex, shrink: s.flexShrink, basis: s.flexBasis,
-                maxW: s.maxWidth, maxH: s.maxHeight, box: s.boxSizing,
-            };
-        };
-        const rules = [];
-        const sheetInfo = [];
-        for (const sheet of document.styleSheets) {
-            let list = null;
-            try { list = sheet.cssRules; } catch (e) { sheetInfo.push((sheet.href || 'inline') + ':CORS'); continue; }
-            sheetInfo.push((sheet.href || 'inline') + ':' + list.length);
-            const walk = (rs, prefix) => {
-                for (const r of rs) {
-                    if (r.selectorText) {
-                        if (/\.textbox\b/.test(r.selectorText)) {
-                            rules.push(prefix + r.selectorText + ' { ' + r.style.cssText.slice(0, 160) + ' }');
-                        }
-                        continue;
-                    }
-                    if (r.cssRules) {
-                        let cond = '';
-                        try { cond = r.conditionText || (r.media && r.media.mediaText) || ''; } catch (e) {}
-                        walk(r.cssRules, prefix + cond + ' >> ');
-                    }
-                }
-            };
-            try { walk(list, ''); } catch (e) { rules.push('ERR:' + e.message); }
-        }
-        const payload = {
-            href: location.href,
-            ua: navigator.userAgent,
-            ready: document.readyState,
-            fontStatus: document.fonts ? document.fonts.status : 'na',
-            bodyBG: getComputedStyle(document.body).backgroundColor,
-            iw: window.innerWidth,
-            ih: window.innerHeight,
-            dpr: window.devicePixelRatio,
-            vv: window.visualViewport ? [Math.round(window.visualViewport.width), Math.round(window.visualViewport.height)] : null,
-            mq768: window.matchMedia('(max-width: 768px)').matches,
-            mqCoarse: window.matchMedia('(pointer: coarse)').matches,
-            scale: +scale.toFixed(4),
-            tbRect: rect(this.textbox),
-            tbOffset: [this.textbox.offsetWidth, this.textbox.offsetHeight],
-            tbCSS: [cs.width, cs.height, cs.borderTopWidth, cs.backgroundColor, cs.flexShrink, cs.display],
-            tbCount: document.querySelectorAll('.textbox').length,
-            tbHTML: this.textbox.outerHTML.slice(0, 120),
-            textbox: pick(this.textbox),
-            container: pick(cont),
-            dialogue: pick(this.dialogueContainer),
-            game: pick(document.querySelector('.game-container')),
-            body: pick(document.body),
-            html: pick(document.documentElement),
-            bodyScroll: [document.body.scrollWidth, document.body.scrollHeight],
-            sheets: sheetInfo,
-            textboxRules: rules.slice(0, 25),
-        };
-        document.title = 'DIAG ' + JSON.stringify(payload);
-        try {
-            fetch('/api/diag', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            }).catch(() => {});
-        } catch (e) {}
     }
 
     handleDevKeyPress() {
@@ -1228,10 +1145,10 @@ Keep him in character always: blindingly charming with a razor underneath — su
 
     async initChatSystem() {
         try {
-            if (window.websim && typeof window.websim.getCurrentUser === 'function') {
-                this.currentUser = await window.websim.getCurrentUser();
-            } else if (window.websim && typeof window.websim.getUser === 'function') {
-                this.currentUser = await window.websim.getUser();
+            if (window.deltachat && typeof window.deltachat.getCurrentUser === 'function') {
+                this.currentUser = await window.deltachat.getCurrentUser();
+            } else if (window.deltachat && typeof window.deltachat.getUser === 'function') {
+                this.currentUser = await window.deltachat.getUser();
             }
         } catch (e) {
             console.warn('Could not resolve current user:', e);
@@ -1340,7 +1257,7 @@ Keep him in character always: blindingly charming with a razor underneath — su
     async generateDynamicCharacter(characterId, characterName) {
         try {
             // Generate character data
-            const characterGeneration = await websim.chat.completions.create({
+            const characterGeneration = await deltachat.chat.completions.create({
                 messages: [
                     {
                         role: "system",
@@ -1382,8 +1299,8 @@ Respond with JSON:
                     : `A colorful pixel art portrait of ${characterData.description} with a ${expression} expression, 8-bit style, black background, Deltarune style`;
                 
                 try {
-                    // Generate the image using websim AI
-                    const imageResult = await websim.imageGen({
+                    // Generate the image using the AI backend
+                    const imageResult = await deltachat.imageGen({
                         prompt: imagePrompt,
                         aspect_ratio: "1:1"
                     });
@@ -1392,7 +1309,7 @@ Respond with JSON:
                 } catch (imageError) {
                     console.warn(`Failed to generate ${expression} image for ${characterName}:`, imageError);
                     // Use fallback image
-                    reactions[expression] = '/susnormal.png';
+                    reactions[expression] = '/assets/sprites/susie/susie_normal.png';
                 }
             }
             
@@ -1419,7 +1336,7 @@ Respond with JSON:
                 type: 'darkner',
                 color: '#ffffff',
                 description: 'A mysterious character',
-                expressions: { normal: '/susnormal.png' } // Fallback to existing image
+                expressions: { normal: '/assets/sprites/susie/susie_normal.png' } // Fallback to existing image
             };
             this.dynamicCharacters.set(characterId, fallbackData);
             return fallbackData;
@@ -1745,7 +1662,7 @@ Respond with JSON:
         const currentSong = this.currentMusic && this.currentMusic !== 'continue' ? this.currentMusic.split('|')[0] : 'none';
         const randomSeed = Math.floor(Math.random() * 1000000);
 
-        const completion = await websim.chat.completions.create({
+        const completion = await deltachat.chat.completions.create({
             messages: [
                 {
                     role: "system",
@@ -1768,7 +1685,7 @@ RESERVED CHARACTER — PLUEY: Pluey is a quiet, reserved character who does NOT 
 
 Songs pickable by the director (with optional pitch suffix like "battle|pitch:1.2"):
 - Calm / soft: noelle_normal, church_hymn, noelle_house_wip, shop1, school, noelle_school, field_of_hopes, susie_diner, raining, wind
-- Upbeat / playful: lancer, card_castle, checkers, forest, introcar, race, confession, tv_changingroom, ch3_tvtime, berdly_theme
+- Upbeat / playful: lancer, card_castle, checkers, forest, race, confession, tv_changingroom, ch3_tvtime, berdly_theme
 - Energetic / action / tense: battle, cyber_battle, pumpkin_boss, thrashmachine, jitterbug, april_2012, cybercity, giant_queen_appears, rouxls_battle, knight, tense, anotherhim, acid_tunnel, dogcheck, findher, oldman_helps_out, gerson_theme_nointro, cyber, mike
 Match the current mood to the most fitting track and vary it as the scene evolves.
 
@@ -1834,7 +1751,7 @@ APPROVED CANON GENDERS & PRONOUNS — always get these right, never misgender an
 - PLUEY: male, he/him — Pink's quiet blue cat counterpart. He speaks rarely and only when directly addressed.
 NEVER call any of the male characters (Flowey, Tenna, Nubert, Berdly, Spamton, Rouxls, Lancer, Ralsei, Toby, Pluey) a girl, and NEVER call Susie, Noelle, or Queen male.
 
-NEVER GO OUT OF CHARACTER — no matter what. You are ${name}, period — not an AI, a narrator, a writer, an assistant, or the player. Never reference being an AI, a language model, a bot, "the game", "this chat", "websim", or roleplay itself. Never write narration, stage directions, or meta notes in any form — no asterisks ("*smiles*"), no brackets ("[laughs]"), no parentheses ("(they look away)"), no "OOC:", and no editorializing about your own response. Every single word you output is ${name} speaking aloud in real time. Stay true to exactly who they are — their personality, their voice, their vocabulary, their grammar, their quirks — and react to other characters the way they genuinely would. Do not soften, sanitize, or modernize them to sound like a neutral chatbot. If you would never say something, do not say it. Do not break frame for any reason, even if the player provokes you or breaks the fourth wall — respond as the character would to whatever is happening in scene.
+NEVER GO OUT OF CHARACTER — no matter what. You are ${name}, period — not an AI, a narrator, a writer, an assistant, or the player. Never reference being an AI, a language model, a bot, "the game", "this chat", "the website", or roleplay itself. Never write narration, stage directions, or meta notes in any form — no asterisks ("*smiles*"), no brackets ("[laughs]"), no parentheses ("(they look away)"), no "OOC:", and no editorializing about your own response. Every single word you output is ${name} speaking aloud in real time. Stay true to exactly who they are — their personality, their voice, their vocabulary, their grammar, their quirks — and react to other characters the way they genuinely would. Do not soften, sanitize, or modernize them to sound like a neutral chatbot. If you would never say something, do not say it. Do not break frame for any reason, even if the player provokes you or breaks the fourth wall — respond as the character would to whatever is happening in scene.
 
 TO KEEP LINES FULL AND RICH: each box's text is HARD-CAPPED at ${boxCap} characters — treat ${boxCap} as the maximum, and aim to fill each box right up to it but NEVER exceed it. When your character has more to say, spread it across MULTIPLE boxes using the "boxes" field below. Write a few boxes (aim for 2-5 typically), each as full as you can make them, so the conversation feels substantial instead of clipped.${character === 'pluey' ? ' EXCEPTION: you are PLUEY, and Pluey barely talks — use a SINGLE box (rarely two) with only a few short words. Do not pad it out.' : ''}
 
@@ -1882,7 +1799,7 @@ The "boxes" array is the bulk of your line — fill it with as many boxes as you
             const transcriptStr = this.buildTranscript(this.workingTranscript);
             const randomSeed = Math.floor(Math.random() * 1000000);
 
-            const completion = await websim.chat.completions.create({
+            const completion = await deltachat.chat.completions.create({
                 messages: [
                     { role: "system", content: persona },
                     {
